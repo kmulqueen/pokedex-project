@@ -46,8 +46,20 @@ module.exports = {
       res.status(422).json(error);
     }
   },
-  deleteAll: async function (req, res) {
-    await PokemonModel.deleteMany();
-    res.json({ msg: "All Pokemon deleted..." });
+  getPokemonById: async function (req, res) {
+    try {
+      const found = await PokemonModel.findById(req.params.id);
+      res.json(found);
+    } catch (error) {
+      res.status(404).json({ error, msg: "Pokemon not found" });
+    }
+  },
+  getPokemonByNumber: async function (req, res) {
+    try {
+      const found = await PokemonModel.findOne({ number: req.params.number });
+      res.json(found);
+    } catch (error) {
+      res.status(404).json({ error, msg: "Pokemon not found" });
+    }
   },
 };

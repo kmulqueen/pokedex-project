@@ -13,3 +13,13 @@ section {
     height: 12rem;
     width: 12rem;
 }
+
+.pokemon-link {
+    text-decoration: none;
+    font-size: inherit;
+    color: inherit;
+}
+
+.pokemon-link:visited {
+    text-decoration: none;
+}
