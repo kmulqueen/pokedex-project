@@ -30,9 +30,9 @@ const AllPokemonView = () => {
                   ? `/pokemon/number/0${item.number}`
                   : item.number >= 100 && `/pokemon/number/${item.number}`
               }
-              className="pokemon-link"
+              className="pokemon-item__link"
             >
-              <h3>
+              <h3 className="pokemon-item__title">
                 {item.number < 10
                   ? `00${item.number}`
                   : item.number >= 10 && item.number < 100
@@ -42,7 +42,11 @@ const AllPokemonView = () => {
                   : item.number}{" "}
                 - {item.name}
               </h3>
-              <img src={item.image} alt={item.name} />
+              <img
+                src={item.image}
+                alt={item.name}
+                className="pokemon-item__image"
+              />
             </Link>
           </div>
         ))

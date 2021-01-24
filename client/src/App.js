@@ -5,7 +5,11 @@ import PokemonDetailsPage from "./pages/PokemonDetailsPage";
 function App() {
   return (
     <Switch>
-      <Route path="/number/:number" exact component={PokemonDetailsPage} />
+      <Route
+        path="/pokemon/number/:number"
+        exact
+        component={PokemonDetailsPage}
+      />
       <Route path="/" exact component={AllPokemonView} />
     </Switch>
   );

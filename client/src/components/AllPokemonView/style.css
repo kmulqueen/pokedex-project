@@ -5,21 +5,20 @@ section {
     row-gap: 3rem;
 }
 
-.pokemon-item > h3 {
+.pokemon-item__title {
     font-size: 2rem;
 }
 
-.pokemon-item > img {
+.pokemon-item__image {
     height: 12rem;
     width: 12rem;
 }
 
-.pokemon-link {
+.pokemon-item__link {
     text-decoration: none;
-    font-size: inherit;
     color: inherit;
 }
 
-.pokemon-link:visited {
+.pokemon-item__link:visited {
     text-decoration: none;
 }
