@@ -1,3 +1,4 @@
+import "./style.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPokemon } from "../../actions/pokemonActions";
@@ -10,7 +11,7 @@ const AllPokemonView = () => {
     dispatch(getAllPokemon());
   }, [dispatch]);
   return (
-    <>
+    <section className="pokemon-view-container">
       {loading ? (
         <p>Loading...</p>
       ) : !loading && pokemon === undefined ? (
@@ -19,7 +20,7 @@ const AllPokemonView = () => {
         !loading &&
         pokemon.length &&
         pokemon.map((item) => (
-          <div key={item._id}>
+          <div className="pokemon-item" key={item._id}>
             <h3>
               {item.number < 10
                 ? `00${item.number}`
@@ -34,7 +35,7 @@ const AllPokemonView = () => {
           </div>
         ))
       )}
-    </>
+    </section>
   );
 };
 
