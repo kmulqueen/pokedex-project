@@ -4,6 +4,7 @@ const pokemonController = require("../../../controllers/pokemonController");
 router
   .route("/")
   .get(pokemonController.getAllPokemon)
-  .post(pokemonController.createEntry);
+  .post(pokemonController.createEntry)
+  .delete(pokemonController.deleteAll);
 
 module.exports = router;

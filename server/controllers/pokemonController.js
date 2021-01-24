@@ -14,24 +14,30 @@ module.exports = {
       const {
         name,
         number,
+        image,
         type,
+        category,
+        region,
+        abilities,
         bio,
         height,
         weight,
         weaknesses,
-        next_evolution,
-        prev_evolution,
+        evolutions,
       } = req.body;
       const newPokemon = new PokemonModel({
         name,
         number,
+        image,
+        region,
+        category,
         type,
         bio,
+        abilities,
         height,
         weight,
         weaknesses,
-        next_evolution: next_evolution ? next_evolution : null,
-        prev_evolution: prev_evolution ? prev_evolution : null,
+        evolutions: evolutions ? evolutions : null,
       });
 
       const pokemonEntry = await newPokemon.save();
@@ -39,5 +45,9 @@ module.exports = {
     } catch (error) {
       res.status(422).json(error);
     }
+  },
+  deleteAll: async function (req, res) {
+    await PokemonModel.deleteMany();
+    res.json({ msg: "All Pokemon deleted..." });
   },
 };
