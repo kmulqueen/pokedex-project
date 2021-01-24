@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPokemon } from "./actions/pokemonActions";
 
 function App() {
+  const dispatch = useDispatch();
+  const { pokemon, loading } = useSelector((state) => state.getAllPokemon);
+
+  useEffect(() => {
+    dispatch(getAllPokemon());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {loading ? (
+        <p>Loading...</p>
+      ) : !loading && pokemon === undefined ? (
+        <p>No Pokemon found...</p>
+      ) : (
+        !loading &&
+        pokemon.length && (
+          <>
+            <img src={pokemon[0].image} alt={pokemon[0].name} />
+            <p>{pokemon[0].name}</p>
+          </>
+        )
+      )}
+    </>
   );
 }
 
