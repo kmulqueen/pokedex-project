@@ -2,15 +2,17 @@ import "./style.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPokemon } from "../../actions/pokemonActions";
-import { Link } from "react-router-dom";
+import PokemonItem from "../../components/PokemonItem";
 
 const AllPokemonView = () => {
   const dispatch = useDispatch();
   const { pokemon, loading } = useSelector((state) => state.getAllPokemon);
 
   useEffect(() => {
-    dispatch(getAllPokemon());
-  }, [dispatch]);
+    if (!loading && pokemon === undefined) {
+      dispatch(getAllPokemon());
+    }
+  }, [dispatch, loading, pokemon]);
   return (
     <section className="pokemon-view-container">
       {loading ? (
@@ -21,34 +23,18 @@ const AllPokemonView = () => {
         !loading &&
         pokemon.length &&
         pokemon.map((item) => (
-          <div className="pokemon-item" key={item._id}>
-            <Link
-              to={
-                item.number < 10
-                  ? `/pokemon/number/00${item.number}`
-                  : item.number >= 10 && item.number < 100
-                  ? `/pokemon/number/0${item.number}`
-                  : item.number >= 100 && `/pokemon/number/${item.number}`
-              }
-              className="pokemon-item__link"
-            >
-              <h3 className="pokemon-item__title">
-                {item.number < 10
-                  ? `00${item.number}`
-                  : item.number >= 10 && item.number < 100
-                  ? `0${item.number}`
-                  : item.number >= 100
-                  ? `${item.number}`
-                  : item.number}{" "}
-                - {item.name}
-              </h3>
-              <img
-                src={item.image}
-                alt={item.name}
-                className="pokemon-item__image"
-              />
-            </Link>
-          </div>
+          <PokemonItem
+            key={item._id}
+            name={item.name}
+            number={
+              item.number < 10
+                ? `00${item.number}`
+                : item.number >= 10 && item.number < 100
+                ? `0${item.number}`
+                : item.number
+            }
+            image={item.image}
+          />
         ))
       )}
     </section>
