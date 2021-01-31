@@ -24,58 +24,67 @@ const PokemonDetailsPage = ({ match }) => {
         !loading &&
         !error &&
         pokemon && (
-          <section className="pokemon-details">
-            <img
-              src={pokemon.image}
-              alt={pokemon.name}
-              className="pokemon-details__image"
-            />
-            <h1 className="pokemon-details__number">
-              No.{" "}
-              {pokemon.number < 10
-                ? `00${pokemon.number}`
-                : pokemon.number >= 10 && pokemon.number < 100
-                ? `0${pokemon.number}`
-                : pokemon.number}
-            </h1>
-            <h1 className="pokemon-details__name">{pokemon.name}</h1>
-            <h3 className="pokemon-details__category">{pokemon.category}</h3>
+          <div className="details-page-container">
             <section className="pokemon-info">
-              <h4 className="pokemon-info-label">Region</h4>
-              <h4 className="pokemon-info__region">{pokemon.region}</h4>
-              <h4 className="pokemon-info-label">Type</h4>
-              <h4 className="pokemon-info__type">
-                {pokemon.type.map((type) => type)}
-              </h4>
-              <h4 className="pokemon-info-label">Weaknesses</h4>
-              <h4 className="pokemon-info__weaknesses">
-                {pokemon.weaknesses.map((weakness) => weakness)}
-              </h4>
-              <h4 className="pokemon-info-label">Height</h4>
-              <h4 className="pokemon-info__height">{pokemon.height}</h4>
-              <h4 className="pokemon-info-label">Weight</h4>
-              <h4 className="pokemon-info__weight">{pokemon.weight}</h4>
-              <h4 className="pokemon-info-label">Abilities</h4>
-              <h4 className="pokemon-info__abilities">
-                {pokemon.abilities.map((ability) => ability.name)}
-              </h4>
-            </section>
-            <section className="pokemon-bio">
-              <p className="pokemon-bio__bio">{pokemon.bio}</p>
+              <div className="pokemon-image">
+                <img
+                  src={pokemon.image}
+                  alt={pokemon.name}
+                  className="pokemon-info__image"
+                />
+              </div>
+              <div className="pokemon-basic">
+                <h1 className="pokemon-basic__number">
+                  No.{" "}
+                  {pokemon.number < 10
+                    ? `00${pokemon.number}`
+                    : pokemon.number >= 10 && pokemon.number < 100
+                    ? `0${pokemon.number}`
+                    : pokemon.number}
+                </h1>
+                <h1 className="pokemon-basic__name">{pokemon.name}</h1>
+                <h3 className="pokemon-basic__category">{pokemon.category}</h3>
+              </div>
+              <section className="pokemon-details">
+                <div className="pokemon-details-info-container">
+                  <h4 className="pokemon-details-label">Region</h4>
+                  <h4 className="pokemon-details__region">{pokemon.region}</h4>
+                  <h4 className="pokemon-details-label">Type</h4>
+                  <h4 className="pokemon-details__type">
+                    {pokemon.type.map((type) => type)}
+                  </h4>
+                  <h4 className="pokemon-details-label">Weaknesses</h4>
+                  <h4 className="pokemon-details__weaknesses">
+                    {pokemon.weaknesses.map((weakness) => weakness)}
+                  </h4>
+                  <h4 className="pokemon-details-label">Height</h4>
+                  <h4 className="pokemon-details__height">{pokemon.height}</h4>
+                  <h4 className="pokemon-details-label">Weight</h4>
+                  <h4 className="pokemon-details__weight">{pokemon.weight}</h4>
+                  <h4 className="pokemon-details-label">Abilities</h4>
+                  <h4 className="pokemon-details__abilities">
+                    {pokemon.abilities.map((ability) => ability.name)}
+                  </h4>
+                </div>
+                <p className="pokemon-details__bio">{pokemon.bio}</p>
+              </section>
             </section>
             {pokemon.evolutions !== null && (
-              <section className="pokemon-evolutions">
-                {pokemon.evolutions.map((evolution, i) => (
-                  <PokemonItem
-                    key={i}
-                    name={evolution.name}
-                    number={evolution.number}
-                    image={`https://www.serebii.net/pokemongo/pokemon/${evolution.number}.png`}
-                  />
-                ))}
-              </section>
+              <>
+                <h2>Evolutions</h2>
+                <section className="pokemon-evolutions">
+                  {pokemon.evolutions.map((evolution, i) => (
+                    <PokemonItem
+                      key={i}
+                      name={evolution.name}
+                      number={evolution.number}
+                      image={`https://www.serebii.net/pokemongo/pokemon/${evolution.number}.png`}
+                    />
+                  ))}
+                </section>
+              </>
             )}
-          </section>
+          </div>
         )
       )}
     </>
