@@ -70,9 +70,9 @@ const PokemonDetailsPage = ({ match }) => {
               </section>
             </section>
             {pokemon.evolutions !== null && (
-              <>
-                <h2>Evolutions</h2>
-                <section className="pokemon-evolutions">
+              <section className="pokemon-evolutions">
+                <h2 className="pokemon-evolutions__header">Evolutions</h2>
+                <div className="pokemon-evolutions__evolutions">
                   {pokemon.evolutions.map((evolution, i) => (
                     <PokemonItem
                       key={i}
@@ -81,8 +81,8 @@ const PokemonDetailsPage = ({ match }) => {
                       image={`https://www.serebii.net/pokemongo/pokemon/${evolution.number}.png`}
                     />
                   ))}
-                </section>
-              </>
+                </div>
+              </section>
             )}
           </div>
         )

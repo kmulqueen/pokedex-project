@@ -18,6 +18,7 @@
          "details" 1fr
          / 1fr;
     row-gap: 1em;
+    margin-bottom: 3em;
 }
 
 .pokemon-basic {
@@ -51,6 +52,12 @@
 }
 
 .pokemon-evolutions {
+    display: grid;
+    place-items: center;
+    row-gap: 2em;
+}
+
+.pokemon-evolutions__evolutions {
     display: grid;
     grid: auto-flow 1fr / 1fr;
     place-items: center center;
