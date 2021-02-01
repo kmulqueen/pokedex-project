@@ -1,6 +1,7 @@
 import "./style.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getPokemonByNumber } from "../../actions/pokemonActions";
 import PokemonItem from "../../components/PokemonItem";
 
@@ -19,13 +20,19 @@ const PokemonDetailsPage = ({ match }) => {
       {loading ? (
         <p>Loading...</p>
       ) : !loading && !pokemon ? (
-        <p>No Pokemon found...</p>
+        <>
+          <Link to="/">Go Home</Link>
+          <p>No Pokemon found...</p>
+        </>
       ) : (
         !loading &&
         !error &&
         pokemon && (
           <div className="details-page-container">
             <section className="pokemon-info">
+              <Link to="/" className="home-link">
+                Go Home
+              </Link>
               <div className="pokemon-image">
                 <img
                   src={pokemon.image}

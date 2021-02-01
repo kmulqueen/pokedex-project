@@ -23,6 +23,11 @@
 
 .pokemon-basic__number {
     font-weight: 400;
+    background: var(--color-bg-orange);
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
 }
 
 .pokemon-basic__name {
@@ -33,11 +38,22 @@
     display: grid;
     grid: 
         "name" 6rem
+        "home-btn" 2rem
          "image" max-content
          "details" 1fr
          / 1fr;
     row-gap: 1em;
     margin-bottom: 3em;
+}
+
+.home-link {
+    grid-area: home-btn;
+    text-decoration: none;
+    background: var(--color-bg-white);
+    width: max-content;
+    padding: 0.5em 1em;
+    align-self: baseline;
+    margin-left: 1em;
 }
 
 .pokemon-basic {
@@ -75,7 +91,7 @@
 }
 
 .pokemon-details-label {
-    font-weight: 600;
+    font-weight: 300;
     background-color: lightgrey;
     display: grid;
     place-items: center;
@@ -89,10 +105,13 @@
 .pokemon-details__bio {
     grid-column: span 2;
     font-size: 1.6rem;
+    font-weight: 300;
     width: 100%;
     max-width: 90vw;
     margin: 0 auto;
     line-height: 1.25;
+    background: var(--color-bg-white);
+    padding: 0.5em;
 }
 
 .pokemon-evolutions {
