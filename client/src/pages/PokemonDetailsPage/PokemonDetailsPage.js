@@ -43,28 +43,47 @@ const PokemonDetailsPage = ({ match }) => {
                     : pokemon.number}
                 </h1>
                 <h1 className="pokemon-basic__name">{pokemon.name}</h1>
-                <h3 className="pokemon-basic__category">{pokemon.category}</h3>
               </div>
               <section className="pokemon-details">
                 <div className="pokemon-details-info-container">
-                  <h4 className="pokemon-details-label">Region</h4>
-                  <h4 className="pokemon-details__region">{pokemon.region}</h4>
-                  <h4 className="pokemon-details-label">Type</h4>
-                  <h4 className="pokemon-details__type">
-                    {pokemon.type.map((type) => type)}
-                  </h4>
-                  <h4 className="pokemon-details-label">Weaknesses</h4>
-                  <h4 className="pokemon-details__weaknesses">
-                    {pokemon.weaknesses.map((weakness) => weakness)}
-                  </h4>
-                  <h4 className="pokemon-details-label">Height</h4>
-                  <h4 className="pokemon-details__height">{pokemon.height}</h4>
-                  <h4 className="pokemon-details-label">Weight</h4>
-                  <h4 className="pokemon-details__weight">{pokemon.weight}</h4>
-                  <h4 className="pokemon-details-label">Abilities</h4>
-                  <h4 className="pokemon-details__abilities">
-                    {pokemon.abilities.map((ability) => ability.name)}
-                  </h4>
+                  <p className="pokemon-details-label">Region</p>
+                  <p className="pokemon-details-info pokemon-details__region">
+                    {pokemon.region}
+                  </p>
+                  <p className="pokemon-details-label">Category</p>
+                  <p className="pokemon-details-info pokemon-details__category">
+                    {pokemon.category}
+                  </p>
+                  <p className="pokemon-details-label">Type</p>
+                  <p className="pokemon-details-info pokemon-details__type">
+                    {pokemon.type.map((type, idx) =>
+                      idx === pokemon.type.length - 1 ? type : `${type}, `
+                    )}
+                  </p>
+                  <p className="pokemon-details-label">Weaknesses</p>
+                  <p className="pokemon-details-info pokemon-details__weaknesses">
+                    {pokemon.weaknesses.map((weakness, idx) =>
+                      idx === pokemon.weaknesses.length - 1
+                        ? weakness
+                        : `${weakness}, `
+                    )}
+                  </p>
+                  <p className="pokemon-details-label">Height</p>
+                  <p className="pokemon-details-info pokemon-details__height">
+                    {pokemon.height}
+                  </p>
+                  <p className="pokemon-details-label">Weight</p>
+                  <p className="pokemon-details-info pokemon-details__weight">
+                    {pokemon.weight}
+                  </p>
+                  <p className="pokemon-details-label">Abilities</p>
+                  <p className="pokemon-details-info pokemon-details__abilities">
+                    {pokemon.abilities.map((ability, idx) =>
+                      idx === pokemon.abilities.length - 1
+                        ? ability.name
+                        : `${ability.name}, `
+                    )}
+                  </p>
                 </div>
                 <p className="pokemon-details__bio">{pokemon.bio}</p>
               </section>
