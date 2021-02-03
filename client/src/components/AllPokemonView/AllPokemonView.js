@@ -10,21 +10,24 @@ const AllPokemonView = ({ pokemon, loading }) => {
         <p>No Pokemon found...</p>
       ) : (
         !loading &&
-        pokemon.length &&
-        pokemon.map((item) => (
-          <PokemonItem
-            key={item._id}
-            name={item.name}
-            number={
-              item.number < 10
-                ? `00${item.number}`
-                : item.number >= 10 && item.number < 100
-                ? `0${item.number}`
-                : item.number
-            }
-            image={item.image}
-          />
-        ))
+        pokemon.length && (
+          <div className="pokemon-view__list">
+            {pokemon.map((item) => (
+              <PokemonItem
+                key={item._id}
+                name={item.name}
+                number={
+                  item.number < 10
+                    ? `00${item.number}`
+                    : item.number >= 10 && item.number < 100
+                    ? `0${item.number}`
+                    : item.number
+                }
+                image={item.image}
+              />
+            ))}
+          </div>
+        )
       )}
     </section>
   );

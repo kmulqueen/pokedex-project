@@ -1,7 +1,9 @@
+import "./style.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPokemon } from "../../actions/pokemonActions";
 import AllPokemonView from "../../components/AllPokemonView";
+import { ReactComponent as SearchIcon } from "../../images/icons/search-icon.svg";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -12,24 +14,29 @@ const HomePage = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // Check if search is name or number & set list to result if found
-    if (isNaN(parseInt(search))) {
-      const found = pokemon.filter(
-        (item) => item.name.toLowerCase() === search.toLowerCase()
-      );
-      if (found) {
-        setList(found);
-      } else {
-        setList([]);
-      }
+    // Check for search input
+    if (!search.length) {
+      setList(pokemon);
     } else {
-      const found = pokemon.filter(
-        (item) => parseInt(item.number) === parseInt(search)
-      );
-      if (found) {
-        setList(found);
+      // Check if search is name or number & set list to result if found
+      if (isNaN(parseInt(search))) {
+        const found = pokemon.filter(
+          (item) => item.name.toLowerCase() === search.toLowerCase()
+        );
+        if (found) {
+          setList(found);
+        } else {
+          setList([]);
+        }
       } else {
-        setList([]);
+        const found = pokemon.filter(
+          (item) => parseInt(item.number) === parseInt(search)
+        );
+        if (found) {
+          setList(found);
+        } else {
+          setList([]);
+        }
       }
     }
   };
@@ -47,19 +54,26 @@ const HomePage = () => {
   }, [pokemon]);
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      <form onSubmit={handleSearch}>
+    <div className="homepage-container">
+      <h1 className="homepage-title">Pokédex</h1>
+      <form onSubmit={handleSearch} className="homepage-form">
+        <SearchIcon className="search-icon" />
         <input
           type="text"
-          placeholder="Search Pokemon name"
+          placeholder="Search Name or Number"
           onChange={(e) => setSearch(e.target.value)}
           value={search}
+          className="homepage-form__input"
         />
-        <button type="submit">Search</button>
+        <button type="submit" className="homepage-form__button">
+          Search
+        </button>
       </form>
 
-      <AllPokemonView pokemon={list.length && list} loading={loading} />
+      <AllPokemonView
+        pokemon={list.length ? list : pokemon}
+        loading={loading}
+      />
     </div>
   );
 };
