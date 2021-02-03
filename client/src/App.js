@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import AllPokemonView from "./components/AllPokemonView";
+import HomePage from "./pages/HomePage";
 import PokemonDetailsPage from "./pages/PokemonDetailsPage";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
         exact
         component={PokemonDetailsPage}
       />
-      <Route path="/" exact component={AllPokemonView} />
+      <Route path="/" exact component={HomePage} />
     </Switch>
   );
 }
