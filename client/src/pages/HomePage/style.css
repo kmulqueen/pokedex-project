@@ -42,19 +42,66 @@
     cursor: pointer;
 }
 
+.form-advanced {
+    background-color: var(--color-bg-white);
+}
+
+.form-advanced__instructions {
+    display: grid;
+    place-items: center;
+    margin-top: 1em;
+}
+
 .form-advanced__filter {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(7.5em, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(9em, 1fr));
     column-gap: 1em;
+    padding: 2em 1em;
 }
 
 .filter-li {
     display: grid;
     grid: 1fr / 4em repeat(2, max-content);
     column-gap: 1em;
+    padding: 0.25em 0;
+
+}
+
+.filter-li__option {
+    padding: 0 0.5em;
+    border: 1px solid black;
 }
 
 .filter-li__option--active {
-    background:red;
+    background: var(--color-bg-blue);
+    color: var(--color-bg-white);
+}
+
+.form-advanced__controls {
+    display: grid;
+    grid: max-content / repeat(2, 2fr) 1fr;
+}
+
+.form-advanced__controls-btn {
+	border: none;
+	padding: 1em 2em;
+	cursor: pointer;
+}
+
+.form-advanced__controls-btn--show {
+    background: var(--color-bg-blue);
+    color: var(--color-bg-white);
+}
+.form-advanced__controls-btn--apply {
+    background: var(--color-bg-green);
+    color: var(--color-bg-white);
+}
+.form-advanced__controls-btn--clear {
+    background: var(--color-bg-blue);
+    color: var(--color-bg-white);
+}
+.form-advanced__controls-btn--close {
+    background: var(--color-bg-red-dark);
+    color: var(--color-bg-white);
 }

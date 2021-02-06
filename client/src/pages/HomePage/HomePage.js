@@ -32,6 +32,7 @@ const HomePage = () => {
 
   const [list, setList] = useState([]);
   const [search, setSearch] = useState("");
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const [filterType, setFilterType] = useState([]);
   const [filterWeakness, setFilterWeakness] = useState([]);
 
@@ -110,6 +111,122 @@ const HomePage = () => {
     }
   };
 
+  const handleApplyFilter = () => {
+    // Create function to compare type/weakness arrays
+    const compareTypesWeaknesses = (arr1, arr2) =>
+      arr1.length === arr2.length &&
+      arr1.every((val, idx) => val.toLowerCase() === arr2[idx].toLowerCase());
+
+    // Initialize new list of pokemon to display
+    const newList = [];
+
+    // Check for length in BOTH type/weakness arrays
+    if (filterType.length && filterWeakness.length) {
+      pokemon.forEach((item) => {
+        if (
+          filterType.length === item.type.length &&
+          filterWeakness.length === item.weaknesses.length
+        ) {
+          // Create comparison array that contains types sorted alphabetically and then weaknesses sorted alphabetically
+          const compArr = [...filterType.sort(), ...filterWeakness.sort()];
+          const pokemonSortedArr = [
+            ...item.type.sort(),
+            ...item.weaknesses.sort(),
+          ];
+          if (compareTypesWeaknesses(compArr, pokemonSortedArr)) {
+            newList.push(item);
+          }
+        } else {
+          const typeSuccess = filterType.every((type) =>
+            item.type.includes(type)
+          );
+          const weaknessSuccess = filterWeakness.every((weakness) =>
+            item.weaknesses.includes(weakness)
+          );
+
+          if (typeSuccess && weaknessSuccess) {
+            newList.push(item);
+          }
+        }
+      });
+    } else {
+      // Check for length in type array
+      if (filterType.length) {
+        // Create comparison array and sort alphabetically
+        const compArr = [...filterType];
+        compArr.sort();
+        if (filterType.length > 1) {
+          // "Strict" filter
+          // See if pokemon.type contains ALL filterType filters
+          pokemon.forEach((item) => {
+            const sortedTypes = [...item.type];
+            sortedTypes.sort();
+            if (compareTypesWeaknesses(compArr, sortedTypes)) {
+              newList.push(item);
+            }
+          });
+        } else {
+          // "Loose" filter
+          // See if a filterType filter is included in pokemon.type
+          pokemon.forEach((item) => {
+            if (item.type.includes(filterType[0])) {
+              newList.push(item);
+            }
+          });
+        }
+      }
+
+      // Check for length in weaknesses array
+      if (filterWeakness.length) {
+        // Create comparison array and sort alphabetically
+        const compArr = [...filterWeakness];
+        compArr.sort();
+        if (filterWeakness.length > 1) {
+          // "Strict" filter
+          // See if pokemon.weaknesses contains ALL filterWeakness filters
+          pokemon.forEach((item) => {
+            const sortedTypes = [...item.weaknesses];
+            sortedTypes.sort();
+            if (compareTypesWeaknesses(compArr, sortedTypes)) {
+              newList.push(item);
+            }
+          });
+        } else {
+          // "Loose" filter
+          // See if a filterWeakness filter is included in pokemon.weaknesses
+          pokemon.forEach((item) => {
+            if (item.weaknesses.includes(filterWeakness[0])) {
+              newList.push(item);
+            }
+          });
+        }
+      }
+    }
+
+    // Set list of pokemon to be returned
+    setList([...newList]);
+  };
+
+  const handleClearFilter = () => {
+    setFilterType([]);
+    setFilterWeakness([]);
+    setList([]);
+    // Reset classList of "active" filter li's
+    const filterOptions = document.querySelectorAll(".filter-li__option");
+    const activeClass = "filter-li__option--active";
+
+    for (const option of filterOptions) {
+      if (option.classList.contains(activeClass)) {
+        option.classList.remove(activeClass);
+      }
+    }
+  };
+
+  const handleHideFilter = () => {
+    handleClearFilter();
+    setShowAdvanced(false);
+  };
+
   useEffect(() => {
     if (!loading && pokemon === undefined) {
       dispatch(getAllPokemon());
@@ -138,29 +255,61 @@ const HomePage = () => {
           Search
         </button>
       </form>
-      <ul className="form-advanced__filter">
-        {pokemonTypes.map((type) => (
-          <li className="filter-li" key={type}>
-            <span className={`filter-li__label filter-li__label--${type}`}>
-              {type}
-            </span>
-            <span
-              className="filter-li__option filter-li__type"
-              name={type}
-              onClick={handleTypeClick}
+      {!showAdvanced ? (
+        <button
+          onClick={() => setShowAdvanced(true)}
+          className="form-advanced__controls-btn form-advanced__controls-btn--show"
+        >
+          Show Filter
+        </button>
+      ) : (
+        <div className="form-advanced">
+          <p className="form-advanced__instructions">T = Type | W = Weakness</p>
+          <ul className="form-advanced__filter">
+            {pokemonTypes.map((type) => (
+              <li className="filter-li" key={type}>
+                <span className={`filter-li__label filter-li__label--${type}`}>
+                  {type}
+                </span>
+                <span
+                  className="filter-li__option filter-li__type"
+                  name={type}
+                  onClick={handleTypeClick}
+                >
+                  T
+                </span>
+                <span
+                  className="filter-li__option filter-li__weakness"
+                  name={type}
+                  onClick={handleWeaknessClick}
+                >
+                  W
+                </span>
+              </li>
+            ))}
+          </ul>
+          <div className="form-advanced__controls">
+            <button
+              className="form-advanced__controls-btn form-advanced__controls-btn--apply"
+              onClick={handleApplyFilter}
             >
-              T
-            </span>
-            <span
-              className="filter-li__option filter-li__weakness"
-              name={type}
-              onClick={handleWeaknessClick}
+              Apply Filter
+            </button>
+            <button
+              className="form-advanced__controls-btn form-advanced__controls-btn--clear"
+              onClick={handleClearFilter}
             >
-              W
-            </span>
-          </li>
-        ))}
-      </ul>
+              Clear Filter
+            </button>
+            <button
+              onClick={handleHideFilter}
+              className="form-advanced__controls-btn form-advanced__controls-btn--close"
+            >
+              X
+            </button>
+          </div>
+        </div>
+      )}
 
       <AllPokemonView
         pokemon={list.length ? list : pokemon}

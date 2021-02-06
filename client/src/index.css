@@ -16,6 +16,9 @@ html {
 
 
 :root {
+    --color-bg-blue: #0FA3B1;
+    --color-bg-green: #06885F;
+    --color-bg-red-dark: #A71D31;
     --color-bg-orange-light: #fa8540;
     --color-bg-orange-dark: #c2492a;
     --color-bg-orange: #e45c2a;

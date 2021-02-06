@@ -1,6 +1,7 @@
 .pokemon-view-container {
     width: 100%;
     padding-top: 2em;
+    background: var(--color-bg-white);
 }
 
 .pokemon-view__list {
