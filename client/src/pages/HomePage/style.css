@@ -1,7 +1,6 @@
 .homepage-container {
     display: grid;
-    grid: repeat(2, 1fr) max-content / 1fr;
-    place-items: center;
+    grid: repeat(2, 1fr) repeat(2, max-content) / 1fr;
 }
 
 .homepage-title {
@@ -41,4 +40,21 @@
     background: var(--color-bg-orange);
     color: var(--color-bg-white);
     cursor: pointer;
+}
+
+.form-advanced__filter {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(7.5em, 1fr));
+    column-gap: 1em;
+}
+
+.filter-li {
+    display: grid;
+    grid: 1fr / 4em repeat(2, max-content);
+    column-gap: 1em;
+}
+
+.filter-li__option--active {
+    background:red;
 }
