@@ -16,7 +16,7 @@
 */
 
 .details-page-container {
-    background: radial-gradient(circle, rgba(2,0,36,1) 0%, var(--color-bg-orange-light) 0%, var(--color-bg-orange-dark) 100%);
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, var(--color-bg-blue-green) 0%, var(--color-bg-blue-dark) 100%);
     min-height: 100vh;
 }
 

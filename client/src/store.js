@@ -5,12 +5,14 @@ import {
   getAllPokemonReducer,
   getPokemonByIdReducer,
   getPokemonByNumberReducer,
+  setPokemonListReducer,
 } from "./reducers/pokemonReducer";
 
 const reducer = combineReducers({
   getAllPokemon: getAllPokemonReducer,
   getPokemonById: getPokemonByIdReducer,
   getPokemonByNumber: getPokemonByNumberReducer,
+  setPokemonList: setPokemonListReducer,
 });
 
 const middleware = [thunk];

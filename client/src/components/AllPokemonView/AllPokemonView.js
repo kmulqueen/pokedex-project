@@ -1,18 +1,42 @@
 import "./style.css";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setPokemonList, getAllPokemon } from "../../actions/pokemonActions";
 import PokemonItem from "../../components/PokemonItem";
 
-const AllPokemonView = ({ pokemon, loading }) => {
+const AllPokemonView = () => {
+  const dispatch = useDispatch();
+  const { pokemon, loading: allPokemonLoading } = useSelector(
+    (state) => state.getAllPokemon
+  );
+
+  const { pokemonList, loading: pokemonListLoading } = useSelector(
+    (state) => state.setPokemonList
+  );
+
+  useEffect(() => {
+    if (!allPokemonLoading && pokemon === undefined) {
+      dispatch(getAllPokemon());
+    }
+  }, [dispatch, allPokemonLoading, pokemon]);
+
+  useEffect(() => {
+    if (pokemon !== undefined && pokemonList === undefined) {
+      dispatch(setPokemonList(pokemon));
+    }
+  }, [dispatch, pokemonList, pokemon]);
+
   return (
     <section className="pokemon-view-container">
-      {loading ? (
-        <p>Loading...</p>
-      ) : (!loading && pokemon === undefined) || (!loading && !pokemon) ? (
-        <p>No Pokemon found...</p>
+      {pokemonListLoading || allPokemonLoading || pokemonList === undefined ? (
+        <p className="pokemon-view-container__loading">Loading...</p>
+      ) : !pokemonListLoading && !pokemonList.length ? (
+        <p className="pokemon-view-container__not-found">No Pokemon Found.</p>
       ) : (
-        !loading &&
-        pokemon.length && (
+        !pokemonListLoading &&
+        pokemonList !== undefined && (
           <div className="pokemon-view__list">
-            {pokemon.map((item) => (
+            {pokemonList.map((item) => (
               <PokemonItem
                 key={item._id}
                 name={item.name}

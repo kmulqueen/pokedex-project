@@ -8,6 +8,9 @@ import {
   GET_POKEMON_BY_ID_REQUEST,
   GET_POKEMON_BY_ID_SUCCESS,
   GET_POKEMON_BY_ID_FAIL,
+  SET_POKEMON_LIST_REQUEST,
+  SET_POKEMON_LIST_SUCCESS,
+  SET_POKEMON_LIST_FAIL,
 } from "../actionTypes/pokemonTypes";
 
 export const getAllPokemonReducer = (state = [], action) => {
@@ -44,6 +47,27 @@ export const getPokemonByIdReducer = (state = {}, action) => {
       return { loading: false, pokemon: action.payload };
     case GET_POKEMON_BY_ID_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const setPokemonListReducer = (state = [], action) => {
+  switch (action.type) {
+    case SET_POKEMON_LIST_REQUEST:
+      return {
+        loading: true,
+      };
+    case SET_POKEMON_LIST_SUCCESS:
+      return {
+        loading: false,
+        pokemonList: action.payload,
+      };
+    case SET_POKEMON_LIST_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

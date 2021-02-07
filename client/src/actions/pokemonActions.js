@@ -9,6 +9,9 @@ import {
   GET_POKEMON_BY_ID_REQUEST,
   GET_POKEMON_BY_ID_SUCCESS,
   GET_POKEMON_BY_ID_FAIL,
+  SET_POKEMON_LIST_REQUEST,
+  SET_POKEMON_LIST_SUCCESS,
+  SET_POKEMON_LIST_FAIL,
 } from "../actionTypes/pokemonTypes";
 
 export const getAllPokemon = () => async (dispatch) => {
@@ -66,6 +69,25 @@ export const getPokemonByNumber = (number) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_POKEMON_BY_NUMBER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const setPokemonList = (list) => async (dispatch) => {
+  try {
+    dispatch({ type: SET_POKEMON_LIST_REQUEST });
+
+    dispatch({
+      type: SET_POKEMON_LIST_SUCCESS,
+      payload: list,
+    });
+  } catch (error) {
+    dispatch({
+      type: SET_POKEMON_LIST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
