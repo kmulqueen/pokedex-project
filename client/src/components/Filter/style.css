@@ -11,17 +11,21 @@
 .form-advanced__filter {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(9em, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
     column-gap: 1em;
-    padding: 2em 1em;
+    padding: 2em;
 }
 
 .filter-li {
     display: grid;
-    grid: 1fr / 4em repeat(2, max-content);
+    grid: 1fr / minmax(4.5rem, 1fr) repeat(2, max-content);
     column-gap: 1em;
     padding: 0.25em 0;
 
+}
+
+.filter-li__label {
+    padding: 0.25em 0.5em;
 }
 
 .filter-li__option {
@@ -33,6 +37,97 @@
     background: var(--color-bg-blue);
     color: var(--color-bg-white);
 }
+
+.filter-li__label--Bug {
+    background: var(--color-type-bug);
+    color: var(--color-bg-white);
+}
+
+.filter-li__label--Dark {
+    background: var(--color-type-dark);
+    color: var(--color-bg-white);
+}
+
+.filter-li__label--Dragon {
+    background: var(--color-type-dragon);
+    color: var(--color-bg-white);
+}
+
+.filter-li__label--Electric {
+    background: var(--color-type-electric);
+    color: black;
+}
+
+.filter-li__label--Fairy {
+    background: var(--color-type-fairy);
+    color: black;
+}
+
+.filter-li__label--Fighting {
+    background: var(--color-type-fighting);
+    color: var(--color-bg-white);
+}
+
+.filter-li__label--Fire {
+    background: var(--color-type-fire);
+    color: var(--color-bg-white);
+}
+
+.filter-li__label--Flying {
+    background: var(--color-type-flying);
+    color: black;
+}
+
+.filter-li__label--Ghost {
+    background: var(--color-type-ghost);
+    color: var(--color-bg-white)
+}
+
+.filter-li__label--Grass {
+    background: var(--color-type-grass);
+    color: black;
+}
+
+.filter-li__label--Ground {
+    background: var(--color-type-ground);
+    color: black;
+}
+
+.filter-li__label--Ice {
+    background: var(--color-type-ice);
+    color: black;
+}
+
+.filter-li__label--Normal {
+    background: var(--color-type-normal);
+    color: black;
+}
+
+.filter-li__label--Poison {
+    background: var(--color-type-poison);
+    color: var(--color-bg-white);
+}
+
+.filter-li__label--Psychic {
+    background: var(--color-type-psychic);
+    color: var(--color-bg-white);
+}
+
+.filter-li__label--Rock {
+    background: var(--color-type-rock);
+    color: var(--color-bg-white);
+}
+
+.filter-li__label--Steel {
+    background: var(--color-type-steel);
+    color: black;
+}
+
+.filter-li__label--Water {
+    background: var(--color-type-water);
+    color: var(--color-bg-white);
+}
+
 
 .form-advanced__controls {
     display: grid;
@@ -61,3 +156,5 @@
     background: var(--color-bg-red-dark);
     color: var(--color-bg-white);
 }
+
+/* Medium Devices Media Query */
