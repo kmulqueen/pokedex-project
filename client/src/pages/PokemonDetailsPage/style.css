@@ -1,20 +1,3 @@
-/* DESKTOP STYLES
-
-.pokemon-info {
-    display: grid;
-    grid: 1fr / repeat(2, 1fr);
-}
-
-.pokemon-evolutions {
-    display: grid;
-    grid: 1fr / repeat(3, 1fr);
-} 
-
-.details-page-container {
-    background: linear-gradient(to left top, var(--color-bg-orange-dark), var(--color-bg-orange-light));
-}
-*/
-
 .details-page-container {
     background: radial-gradient(circle, rgba(2,0,36,1) 0%, var(--color-bg-blue-green) 0%, var(--color-bg-blue-dark) 100%);
     min-height: 100vh;
@@ -124,4 +107,52 @@
     display: grid;
     grid: auto-flow 1fr / 1fr;
     place-items: center center;
+}
+
+@media only screen and (min-width: 900px) {
+    .pokemon-info {
+        grid-template-areas: 
+            "name name"
+            "home-btn home-btn"
+            "image details";
+
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 7em;
+    }
+
+    .home-link {
+        margin-left: 2em;
+        font-size: 1.2rem;
+    }
+
+    .pokemon-image {
+        align-self: center;
+        scale: 1.5;
+    }
+
+    .pokemon-details {
+        margin-right: 2em;
+        max-width: 65rem;
+        justify-self: center;
+        row-gap: 2em;
+    }
+
+    .pokemon-details-info-container {
+        font-size: 1.8rem;
+    }
+
+    .pokemon-details__bio {
+        padding: 1em;
+        font-size: 1.8rem;
+    }
+
+    .pokemon-evolutions__header {
+        font-size: 2.4rem;
+    }
+
+    .pokemon-evolutions__evolutions {
+        grid-auto-flow: column;
+        column-gap: 4em;
+    }
+
 }
