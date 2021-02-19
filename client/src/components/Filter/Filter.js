@@ -78,6 +78,33 @@ const Filter = () => {
     }
   };
 
+  const handleTypeKeyPress = (e) => {
+    e.stopPropagation();
+    const enterOrSpace =
+      e.key === "Enter" ||
+      e.key === " " ||
+      e.key === "Spacebar" ||
+      e.which === 13 ||
+      e.which === 32;
+    if (enterOrSpace) {
+      e.preventDefault();
+      handleTypeClick(e);
+    }
+  };
+  const handleWeaknessKeyPress = (e) => {
+    e.stopPropagation();
+    const enterOrSpace =
+      e.key === "Enter" ||
+      e.key === " " ||
+      e.key === "Spacebar" ||
+      e.which === 13 ||
+      e.which === 32;
+    if (enterOrSpace) {
+      e.preventDefault();
+      handleWeaknessClick(e);
+    }
+  };
+
   const handleApplyFilter = () => {
     // Create function to compare type/weakness arrays
     const compareTypesWeaknesses = (arr1, arr2) =>
@@ -222,6 +249,9 @@ const Filter = () => {
               className="filter-li__option filter-li__type"
               name={type}
               onClick={handleTypeClick}
+              onKeyUp={handleTypeKeyPress}
+              role="button"
+              tabIndex="0"
             >
               T
             </span>
@@ -229,6 +259,9 @@ const Filter = () => {
               className="filter-li__option filter-li__weakness"
               name={type}
               onClick={handleWeaknessClick}
+              onKeyUp={handleWeaknessKeyPress}
+              role="button"
+              tabIndex="0"
             >
               W
             </span>
