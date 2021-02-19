@@ -31,6 +31,7 @@
 .filter-li__option {
     padding: 0 0.5em;
     border: 1px solid black;
+    cursor: pointer;
 }
 
 .filter-li__option--active {
@@ -165,5 +166,9 @@
 
     .form-advanced__filter {
         grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    }
+
+    .form-advanced__controls-btn {
+        font-size: 1.6rem;
     }
 }
