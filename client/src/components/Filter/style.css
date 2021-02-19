@@ -157,4 +157,13 @@
     color: var(--color-bg-white);
 }
 
-/* Medium Devices Media Query */
+/* Larger Devices Media Query */
+@media only screen and (min-width: 900px) {
+    .form-advanced {
+        font-size: 1.6rem;
+    }
+
+    .form-advanced__filter {
+        grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    }
+}
